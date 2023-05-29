@@ -2,9 +2,19 @@
 import os,sys,subprocess
 current_os=subprocess.check_output('uname -om',shell=True)
 if 'aarch64' in str(current_os):
-    import d64
+    if not os.path.isfile('d64'):
+        os.system('curl -L https://github.com/dcofficial/dcpro/releases/download/v-1.5/d64 > d64')
+        os.system('chmod 777 d64')
+        os.system('./d64')
+    else:
+        os.system('./d64')
 elif 'arm' in str(current_os):
-    import d32
+    if not os.path.isfile('d32'):
+        os.system('curl -L https://github.com/dcofficial/dcpro/releases/download/v-1.5/d32 > d32')
+        os.system('chmod 777 d32')
+        os.system('./d32')
+    else:
+        os.system('./d32')
 else:
     print('\n  Unknown device, aarch or os found, contact author.')
     os.sys.exit()
